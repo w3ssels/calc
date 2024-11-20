@@ -1,0 +1,2 @@
+# calc
+short for calculator
