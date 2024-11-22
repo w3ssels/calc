@@ -21,6 +21,7 @@ class CalcUtils {
         Scanner scan = new Scanner(System.in);
         System.out.println("Input equation:");
         String[] input = scan.nextLine().split(" "); // Split the input into tokens
+        scan.close();
         // Convert to postfix and display the result
         System.out.println("Postfix: " + String.join(" ", toPostfix(input)));
     }
