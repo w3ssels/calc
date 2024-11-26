@@ -101,4 +101,27 @@ class CalcUtils {
         retStrings = output.toArray(retStrings);
         return retStrings;
     }
+
+    public static boolean isNumber(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean isOperator(String s) {
+        Pattern operators = Pattern.compile("\\+|\\-|\\*|\\/|log");
+        Matcher opsMatch = operators.matcher(s);
+        return opsMatch.find();
+    }
+
+    public static boolean isFunction(String s) {
+        Pattern functions = Pattern.compile("sin|cos|tan|arcsin|arccos|arctan");
+        Matcher funcMatch = functions.matcher(s);
+        return funcMatch.find();
+    }
+
 }

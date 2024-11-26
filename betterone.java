@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Stack;
 
-class CalcUtils {
+class betterOne {
     private static final Map<String, Integer> precedenceMap = Map.of(
         "+", 2,
         "-", 2,
@@ -19,6 +19,7 @@ class CalcUtils {
         Scanner scan = new Scanner(System.in);
         System.out.println("Input equation:");
         String input = scan.nextLine();
+        scan.close();
         ArrayList<String> tokens = tokenize(input);
         String[] postfix = toPostfix(tokens.toArray(new String[0]));
         System.out.println("Postfix: " + String.join(" ", postfix));
