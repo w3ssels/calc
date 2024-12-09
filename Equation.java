@@ -8,7 +8,21 @@ public class Equation {
         e = new ArrayList<String>(Arrays.asList(equation));
     }
 
+    public Equation() {
+        e = new ArrayList<String>(1);
+        e.set(0, "0");
+    }
+
     public double solve() throws Exception {
+        for (int i = 0; i < e.size(); i++) {
+            if ("e".equals(e.get(i))) {
+                e.set(i, Double.toString(Math.E));
+            } else if ("pi".equals(e.get(i))) {
+                e.set(i, Double.toString(Math.PI));
+            } else if ("phi".equals(e.get(i))) {
+                e.set(i, Double.toString((1+Math.sqrt(5))/2));
+            }
+        }
         while (e.size() > 1) {
             int i = 1;
             while (!(CalcUtils.isOperator(e.get(i)) || CalcUtils.isFunction(e.get(i)))) {

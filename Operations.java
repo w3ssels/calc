@@ -12,17 +12,9 @@ public class Operations {
         } else if ("^".equals(operator)) {
             return Math.pow(n1, n2);
         } else if ("log".equals(operator)) {
-            return Operations.logBase(n1, n2);
+            return Logarithm.logBase(n1, n2);
         } else {
             throw new Exception("Invalid basicOperation() operator: " + operator);
-        }
-    }
-
-    public static Double logBase(double base, double n1) {
-        if (base == Math.E) {
-            return Math.log(n1);
-        } else {
-            return Math.log(n1)/Math.log(base);
         }
     }
 
@@ -39,6 +31,8 @@ public class Operations {
             return Math.acos(num);
         } else if ("arctan".equals(function)) {
             return Math.atan(num);
+        } else if ("ln".equals(function)) {
+            return Math.log(num);
         } else {
             throw new Exception("Unknown function: " + function);
         }

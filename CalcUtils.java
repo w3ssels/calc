@@ -31,14 +31,18 @@ class CalcUtils {
         ArrayList<String> stack = new ArrayList<String>(); // Stack to store operators and parentheses
 
         // Define the patterns for functions and operators
-        Pattern functions = Pattern.compile("sin|cos|tan|arcsin|arccos|arctan");
-        Pattern operators = Pattern.compile("\\+|\\-|\\*|\\/|log");
+        Pattern functions = Pattern.compile("sin|cos|tan|arcsin|arccos|arctan|ln");
+        Pattern operators = Pattern.compile("\\+|\\-|\\*|\\/|log|\\^");
 
         // Process each token in the equation
         for (int i = 0; i < tokens.length; i++) {
             try {
                 // Try parsing the token as a number (operand)
-                output.add(Float.toString(Float.parseFloat(tokens[i])));
+                if (!"-".equals(tokens[i]) && "-".equals(tokens[i].substring(0, 1))) {
+                    output.add(Double.toString(-1*Double.parseDouble(tokens[i].substring(1))));
+                } else {
+                    output.add(Double.toString(Double.parseDouble(tokens[i])));
+                }
             }
             catch (Exception e) {
                 // If it's not a number, check if it's a function or operator
@@ -113,13 +117,13 @@ class CalcUtils {
     }
 
     public static boolean isOperator(String s) {
-        Pattern operators = Pattern.compile("\\+|\\-|\\*|\\/|log");
+        Pattern operators = Pattern.compile("[\\+|\\-|\\*|\\/|log|\\^]$");
         Matcher opsMatch = operators.matcher(s);
         return opsMatch.find();
     }
 
     public static boolean isFunction(String s) {
-        Pattern functions = Pattern.compile("sin|cos|tan|arcsin|arccos|arctan");
+        Pattern functions = Pattern.compile("sin|cos|tan|arcsin|arccos|arctan|ln");
         Matcher funcMatch = functions.matcher(s);
         return funcMatch.find();
     }
